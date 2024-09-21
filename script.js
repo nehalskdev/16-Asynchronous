@@ -36,4 +36,4 @@ const getCountryData = function (country) {
   });
 };
 
-getCountryData('india');
+getCountryData('Lebanon');
