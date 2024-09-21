@@ -4,16 +4,18 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////////////////
-const request = new XMLHttpRequest();
-request.open('GET', 'https://restcountries.com/v2/name/india');
-const data = request.send();
-console.log(request.responseText);
 
-request.addEventListener('load', function () {
-  const [data] = JSON.parse(this.responseText);
-  console.log(data);
+const getCountryData = function (country) {
+  const request = new XMLHttpRequest();
+  request.open('GET', `https://restcountries.com/v2/name/${country}`);
+  const data = request.send();
+  console.log(request.responseText);
 
-  const html = `
+  request.addEventListener('load', function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+
+    const html = `
         <article class="country">
           <img class="country__img" src="${data.flag}" />
           <div class="country__data">
@@ -29,5 +31,9 @@ request.addEventListener('load', function () {
           </div>
         </article>
     `;
-  countriesContainer.insertAdjacentHTML('beforeend', html);
-});
+    countriesContainer.insertAdjacentHTML('beforeend', html);
+    countriesContainer.style.opacity = 1;
+  });
+};
+
+getCountryData('india');
