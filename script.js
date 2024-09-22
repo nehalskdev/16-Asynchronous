@@ -71,3 +71,4 @@ const countriesContainer = document.querySelector('.countries');
 
 const request = fetch('https://restcountries.com/v2/name/india');
 console.log(request);
+
