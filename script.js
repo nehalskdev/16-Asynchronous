@@ -61,4 +61,13 @@ const countriesContainer = document.querySelector('.countries');
 
 // getCountryAndNeighbor('UAE');
 
-// 
+// Promises 
+
+// modern way to do AJAX call
+
+// const request = new XMLHttpRequest();
+//   request.open('GET', `https://restcountries.com/v2/name/${country}`);
+//   const data = request.send();
+
+const request = fetch('https://restcountries.com/v2/name/india');
+console.log(request);
