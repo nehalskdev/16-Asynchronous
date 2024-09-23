@@ -100,8 +100,8 @@ const getCountryData = function (country) {
 
       if (!response.ok)
         throw new Error(`Country not found (${response.status})`);
-      
-      return response.json()
+
+      return response.json();
     })
     .then(data => {
       renderCountry(data[0]);
@@ -119,14 +119,31 @@ const getCountryData = function (country) {
       renderError(`something went wrong 💥💥 ${err.message} . try again!`);
     })
     .finally(() => {
-    countriesContainer.style.opacity = 1;
-  })
+      countriesContainer.style.opacity = 1;
+    });
 };
 btn.addEventListener('click', function () {
   getCountryData('UAE');
 });
 // getCountryData('biivni');
 
-new Promise(function (resolve, reject) {
+// building simple promise
+
+const lotteryPromise = new Promise(function (resolve, reject) {
   
-})
+  console.log('lottery draw is happeing 🔮');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+    resolve('You win 😍');
+  } else {
+    reject(new Error ('You Lost 😒'));
+  }
+  }, 2000)
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
+
+
+const wait = function (seconds) {
+
+}
