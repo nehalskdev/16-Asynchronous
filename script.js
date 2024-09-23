@@ -24,7 +24,12 @@ const renderCountry = function (data, className = '') {
     `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
+};
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('afterend', msg);
+  // countriesContainer.style.opacity = 1;
 };
 
 // const getCountryAndNeighbor = function (country) {
@@ -86,10 +91,18 @@ console.log(request);
 // getCountryData('UAE');
 
 // more simplified way
+
 const getCountryData = function (country) {
   // country 1
   fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      
+      return response.json()
+    })
     .then(data => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
@@ -100,6 +113,20 @@ const getCountryData = function (country) {
       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbour'));
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(`${err}💥💥💥`);
+      renderError(`something went wrong 💥💥 ${err.message} . try again!`);
+    })
+    .finally(() => {
+    countriesContainer.style.opacity = 1;
+  })
 };
-getCountryData('UAE');
+btn.addEventListener('click', function () {
+  getCountryData('UAE');
+});
+// getCountryData('biivni');
+
+new Promise(function (resolve, reject) {
+  
+})
