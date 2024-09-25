@@ -170,6 +170,7 @@ const whereAmI = async function (country) {
 whereAmI('pakistan');
 console.log('First');
 
+// practice code
 // try {
 //   let y = 1;
 //   const x = 2;
