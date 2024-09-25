@@ -129,21 +129,41 @@ btn.addEventListener('click', function () {
 
 // building simple promise
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-  
-  console.log('lottery draw is happeing 🔮');
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-    resolve('You win 😍');
-  } else {
-    reject(new Error ('You Lost 😒'));
-  }
-  }, 2000)
-});
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('lottery draw is happeing 🔮');
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve('You win 😍');
+//     } else {
+//       reject(new Error('You Lost 😒'));
+//     }
+//   }, 2000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
+// lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
 
-// promisifying setTimeout
-const wait = function (seconds) {
+// // promisifying setTimeout
+// const wait = seconds => {
+//   return new Promise(resolve => {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
 
-}
+// wait(2)
+//   .then(() => {
+//     console.log('I waited for 2 seconds');
+//     return wait(1);
+//   })
+//   .then(() => console.log('I waited for 1 second'));
+
+// Promise.resolve('Foran khatam').then(x => console.log(x));
+// Promise.reject(new Error('reject foran')).then(x => console.error(x));
+
+// Async Await
+
+const whereAmI = async function (country) {
+  const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+  console.log(res);
+};
+whereAmI('UAE');
+console.log('First');
