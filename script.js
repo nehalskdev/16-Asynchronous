@@ -178,3 +178,7 @@ console.log('First');
 // } catch (error) {
 //   alert(error.message);
 // }
+
+// promise combinators
+
+// promise.race
